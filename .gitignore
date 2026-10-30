@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+bot_backup*.py
+bot_before_flow_update.py
+.env
