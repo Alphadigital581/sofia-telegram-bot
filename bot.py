@@ -343,7 +343,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 chat_id=target,
                 text=(
                     "❌ Screenshot ou a pa bon. Tanpri eseye ankò.\n\n"
-                    "Voye yon nouvo screenshot bon"
+                    "Voye yon nouvo screenshot ki bon"
                 ),
             )
 
@@ -460,7 +460,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await send_text(
             update,
-            "Pa gen pwoblèm. M ap ba ou kontak mwen pou nou ka pale plis:\n"
+            "Pa gen pwoblèm. M ap ba ou kontak yon nan administratè yo pou nou ka pale plis:\n"
             f"{CONTACT}",
         )
 
@@ -560,8 +560,8 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await send_text(
             update,
-            "Pran tan ou. Lè ou fin enskri, voye m yon screenshot "
-            "foto a epi di m Wi. 😊",
+            "Pran tan ou. Lè ou finn fè transfè a, voye m yon screenshot "
+            "foto a epi di m ( Wi MWEN FÈ SA ). 😊",
         )
 
     elif data == "final_yes":
@@ -603,7 +603,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             logger.exception("Erè voye screenshot bay administratè")
             await send_text(
                 update,
-                "Mwen pa rive voye screenshot la pou verifikasyon. "
+                "Mwen pa rive voye screenshot la pou verifikasyon an. "
                 "Tanpri eseye ankò pita.",
             )
 
@@ -634,7 +634,7 @@ async def receive_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user["final_photo"] = photo_id
 
         await update.message.reply_text(
-            "✅ Mwen resevwa screenshot final depo a.\n"
+            "✅ Mwen resevwa screenshot final transfè a.\n"
             "TANPRI CHWAZI ( WI MWEN FÈ SA )?",
             reply_markup=buttons(
                 ("A - WI, MWEN FÈ SA", "final_yes"),
