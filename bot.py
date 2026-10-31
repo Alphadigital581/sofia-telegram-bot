@@ -16,7 +16,7 @@ from telegram.ext import (
 # KONFIGIRASYON
 # ==========================================
 
-TOKEN = os.getenv("SOFIA_BOT_TOKEN", "")
+TOKEN = os.getenv("SOFIA_BOT_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN", "")
 ADMIN_ID = 6646123986
 
 SITE = "https://fredson.com"
