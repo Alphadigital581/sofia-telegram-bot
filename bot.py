@@ -125,8 +125,7 @@ async def ask_first_registration(update, context):
     await send_text(
         update,
         "Mèsi anpil pou enterè ou! Ann kòmanse pwosesis enskripsyon kont travay ou a kounye a."
-        "👇 Premye a, kopi lyen an epi ouvè li nan Google Chrome.
-Ranpli enskripsyon an swiv gid la:\n\n"
+        "👇 Premye a, kopi lyen an epi ouvè li nan Google Chrome. Ranpli enskripsyon an swiv gid la:\n\n"
         f"{SITE}",
     )
 
