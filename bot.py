@@ -93,8 +93,8 @@ async def ask_age(update, context):
 
     await send_text(
         update,
-        "Mwen kontan ou kontakte nou. Mwen se Sofia asistan. "
-        "Èske ou gen 18 an oswa plis?",
+        "Mwen kontan ou kontakte nou. Mwen se Sofia, asistan HR, e mwen vle prezante ou yon opòtinite travay ki trè lejè ak revni ki byen enteresan: ou ka touche ant 10000 ak 50000 G pa semèn nan travay sa a. Si ou enterese nan opòtinite sa a. "
+        "Èske ou gen 18 an oswa plis? Poum ka anrejistre detay sou ou ki inpòtan yo",
         buttons(
             ("A - Wi", "age_yes"),
             ("B - NON", "age_no"),
@@ -108,9 +108,9 @@ async def ask_understanding(update, context):
 
     await send_text(
         update,
-        "😊 Nou se yon kominote, yon konpayi.\n\n"
-        "📱 Travay sa a se machann.\n\n"
-        "Èske ou konprann? 😊",
+        "😊Nou se BNN, yon konpayi ki espesyalize nan maketing dijital ak pwomosyon pwodwi sou entènèt. Kounye a, n ap kolabore ak plizyè platfòm entènasyonal komès elektwonik.\n\n"
+        "📱Travay sa a se ede machann sou entènèt ogmante vizibilite pwodwi yo atravè ti travay pwomosyon ki senp epi touche komisyon. Ou sèlman bezwen sèvi ak yon telefòn mobil oswa yon òdinatè, epi ou pa bezwen okenn eksperyans anvan. Chak travay pran anviwon 5 a 10 minit epi li ka pote yon komisyon 300 a 2000 G. Orè a fleksib, epi ou ka fè travay la nan tan lib ou.\n\n"
+        "Èske opòtinite travay a tan pasyèl sa enterese w?😊.",
         buttons(
             ("A - Wi", "understand_yes"),
             ("B - NON", "understand_no"),
@@ -124,8 +124,9 @@ async def ask_first_registration(update, context):
 
     await send_text(
         update,
-        "Mèsi anpil pou enterè ou! Ann kòmanse swiv gid la, "
-        "antre sou sit la epi kreye kont ou an 👇\n\n"
+        "Mèsi anpil pou enterè ou! Ann kòmanse pwosesis enskripsyon kont travay ou a kounye a."
+        "👇 Premye a, kopi lyen an epi ouvè li nan Google Chrome.
+Ranpli enskripsyon an swiv gid la:\n\n"
         f"{SITE}",
     )
 
@@ -133,7 +134,8 @@ async def ask_first_registration(update, context):
 
     await send_text(
         update,
-        "Apre ou fin antre, voye m yon screenshot ekran "
+        "Nouvo itilizatè yo resevwa yon rekonpans 138G lè yo fini enskripsyon an. ✔️
+Apre ou fin ranpli enskripsyon an, voye m yon screenshots ekran,"
         "epi ekri m Chwazi Wi pou mwen ka ede ou ak pwochen etap la.\n\n"
         "Èske ou enskri deja?",
         buttons(
@@ -149,18 +151,16 @@ async def ask_second_site(update, context):
 
     await send_text(
         update,
-        "Felisitasyon! 🎉 Paske ou enskri deja.\n\n"
-        "Nou prèske rive! 🚀 Etap enpòtan: "
-        "Tout ekip nou an ak travay chak jou.\n\n"
-        "Mwen envite w rantre nan sit ofisyèl la "
-        "tan pasyèl konpayi nou an.\n\n"
+        "Felisitasyon! 🎉 Kounye a, ou se yon manm VIP.Yo ajoute yon bonis ant 5000G-10000G nan kont ou. Yonfwa ou fin fè travay jounen an, ou ka retire bonis sa a ansanm ak lajan w yo dirèkteman atravè Natcash oswa Moncash. 💸🏦.\n\n"
+        "Nou prèske rive! 🚀 Etap enpòtan:"
+        "Tout ekip nou an ak travay chak jou yo deja pibliye sou Telegram.\n\n"
+        "Mwen envite w rantre nan chanèl ofisyèl travay a tan pasyèl konpayi nou an, kote w ap jwenn enfòmasyon sou travay a tan pasyèl ak anons enpòtan.\n\n"
         f"Klike sou lyen an: 👉 {SITE}",
     )
 
     await send_text(
         update,
-        "Si ou rantre nan sit la, voye yon screenshot kopi ekran "
-        "epi ekri Wi, m ap mennen ou.\n\n"
+        "Si ou rantre nan chanèl la, voye yon screenshots kopi ekran epi m ap mennen ou nan pwochen etap la. M ap ba ou yon ti entwodiksyon epi gide ou nan etap ak operasyon travay a tan pasyèl la!\n\n"
         "Èske ou antre nan sit la?",
         buttons(
             ("A - Wi", "site_yes"),
@@ -176,8 +176,8 @@ async def ask_movie_explanation(update, context):
     await send_text(
         update,
         "Oke, kounye a m ap eksplike kijan li fonksyone etap pa etap.\n\n"
-        "Nou se yon ekip pou gade fim.\n\n"
-        "Si ou konprann, tanpri reponn:",
+        "Nou se founisè sèvis platfòm nan, epi nou prensipalman konsantre sou ede machann sou entènèt yo ogmante lavant, amelyore kalite pwodwi yo, epi ogmante vizibilite mak la. Sepandan, ou pa bezwen achte oswa vann okenn pwodwi. Nou okipe pwosesis lòd ak lojistik, epi machann yo resevwa peman ak komisyon nou yo an tan reyèl.\n\n"
+        "Si ou konprann, tanpri reponn mwen Wi:",
         buttons(
             ("A - Wi", "movie_yes"),
             ("B - NON", "movie_no"),
@@ -193,12 +193,12 @@ async def ask_enter_site_again(update, context):
         update.effective_chat.id,
         2,
         context,
-        "Kounye a ou ka vini sou sit la alèz.",
+        "Kounye a ou ka vin yon anplwaye nan sant komèsyal nou an epi touche ant 5000 ak 9000 HTG pa jou jis lè w aktive kont VIP1 ou a. M ap montre w kijan pou w fè sa.",
     )
 
     await send_text(
         update,
-        "Èske ou antre?",
+        "Èske ou gen tan pou aktive l?",
         buttons(
             ("A - Wi", "enter_yes"),
             ("B - NON", "enter_no"),
@@ -214,13 +214,13 @@ async def ask_ready(update, context):
         update.effective_chat.id,
         3,
         context,
-        "Ou aktive.\n\n"
-        "⚠️ Nòt: Sa a se yon bon sit, se mwen ki kreye li.",
+        "Pou aktive kont ou sou platfòm nan, ou dwe depoze HTG 200 tanporèman kòm yon depo wap fè pou yon sèl fwa.✅\n\n"
+        "⚠️Nòt: Sa a se pa yon envestisman, men yon fason pou aktive kont ou koz sit la pa peye frè pou anpwaye yo, e pap gen kòmand chans, chak kòmand ou pral apwouve koute yon ti frè e 200 Goud la ap sifi pou apwouve plizyè kòmand e travay pandan plizyè jou. wap pran sèlman anviron 5 a 10 minit pou konplete premye travay ou pou jodi a. Ou pral jwenn 13 travay an total. Apre ou fin konplete premye travay la, ou ka retire ant  HTG 900 ak 1050 menm jou a nan yon delè de 5 a 20 minit ✅.",
     )
 
     await send_text(
         update,
-        "Èske ou pare kounye a?",
+        "Èske ou prè pou depoze HTG 200 nan kont ou, pou ka kòmanse travay la depi kounya a?",
         buttons(
             ("A - Wi", "ready_yes"),
             ("B - NON", "ready_no"),
@@ -234,10 +234,10 @@ async def ask_method(update, context):
 
     await send_text(
         update,
-        "Pa ki mwayen ou vle enskri sou sit la?",
+        "Pa ki mwayen ou vle fè depo a?",
         buttons(
-            ("A - Google", "method_google"),
-            ("B - Imèl", "method_email"),
+            ("A - NatCash", "method_google"),
+            ("B - MonCash", "method_email"),
         ),
     )
 
@@ -248,9 +248,8 @@ async def ask_final_registration(update, context):
 
     await send_text(
         update,
-        "Ou bezwen enskri pa youn nan metòd yo. 🚀\n\n"
-        "Si ou enskri, voye m screenshot foto a.\n\n"
-        "Èske ou enskri?",
+        "Ou bezwen depoze 200 HTG nan kont sa a pou aktive li.❗️Tanpri chwazi \"Transfè\" olye de \"Depo\". ❗️Si transfè a reyisi, tanpri voye yon screenshots kopi ekran resi transfè a ban mwen épi Chwazi Wi ou NON.🧾💳 N ap verifye peman ou a⚡️ Yon fwa verifikasyon an fini map kontakte administratè a n ap fè w konnen imedyatman epi n ap ba w aksè ak travay la. 🚀.\n\n"
+        "Èske ou efektye transfè a ?",
         buttons(
             ("A - WI, MWEN FÈ SA", "final_yes"),
             ("B - NON, MWEN POKO", "final_no"),
@@ -273,7 +272,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await send_text(
         update,
-        "👋 Bonjou 😊 Mwen se Sofia nan ekip Resous Imèn.\n\n"
+        " 👋 Bonjou 😊 Mwen se Sofia nan ekip Resous Imèn.N ap kolabore ak platfòm entènasyonal tankou SHEIN, Amazon ak PriceSmart pou rekrite moun ki ka ede jere kòmand sou entènèt.\n\n"
         "Èske ou ka di m ki kote ou te wè anons rekritman nou an?",
         buttons(
             ("A - Facebook", "source"),
@@ -333,7 +332,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await send_image(target, 4, context)
 
             await query.edit_message_caption(
-                caption="✅ Screenshot AKSEPTE. Katriyèm imaj la voye.",
+                caption="✅ Screenshot AKSEPTE. Gad imaj sa pou wè e konprann kisa pou fè.",
             )
 
         elif action == "reject":
@@ -344,7 +343,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 chat_id=target,
                 text=(
                     "❌ Screenshot ou a pa bon. Tanpri eseye ankò.\n\n"
-                    "Voye yon nouvo screenshot ki klè."
+                    "Voye yon nouvo screenshot bon"
                 ),
             )
 
@@ -443,7 +442,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await send_text(
             update,
-            "Pa gen pwoblèm. Sit la la sèlman pou jwenn enfòmasyon. 😊",
+            "Pa gen pwoblèm. gwoup la la sèlman pou jwenn e swiv enfòmasyon sou sit la. 😊",
         )
 
     # --------------------------------------
@@ -508,7 +507,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
         set_stage(context, uid, "wait_ready")
         await send_text(
             update,
-            "Ou pa gen pwoblèm. Ou ka fè sa nenpòt lè. 😊\n"
+            "Ou pa gen pwoblèm. Ou ka fè sa nenpòt lè ou vle. 😊\n"
             "Lè ou pare, ekri m epi chwazi A. M ap gide w etap pa etap.\n\n"
             "Èske ou pare?",
             buttons(("A - Wi", "ready_later_yes")),
@@ -523,31 +522,30 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # ETAP 9: GOOGLE OSWA IMÈL
     # --------------------------------------
 
-    elif data == "method_google":
+    elif data == "method_NatCash":
         if user.get("stage") != "method":
             return
 
         await send_text(
             update,
-            "Metòd Google:\n\n"
-            "non\n"
-            "Cassandra Lafortune\n"
-            "lundi\n"
-            "mardi",
+            "Metòd NatCash:\n\n"
+            "NatCash\n"
+            "41809786\n"
+            "Wislande Brunele",
         )
 
         await ask_final_registration(update, context)
 
-    elif data == "method_email":
+    elif data == "method_MonCash":
         if user.get("stage") != "method":
             return
 
         await send_text(
             update,
-            "Metòd Imèl:\n\n"
-            "Na\n"
-            "Wislande Brunele\n"
-            "casande",
+            "Metòd MonCash:\n\n"
+            "MonCash\n"
+            "44282371\n"
+            "Cassandra Lafortune",
         )
 
         await ask_final_registration(update, context)
@@ -580,7 +578,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await send_text(
             update,
-            "Mwen resevwa screenshot ou a. Tann, m ap verifye pou ou. ⏳",
+            "Mwen resevwa screenshot ou a. Tann, m ap fè verifikasyon an pou ou. ⏳",
         )
 
         try:
