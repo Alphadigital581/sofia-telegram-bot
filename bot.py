@@ -219,7 +219,7 @@ async def ask_ready(update, context):
 
     await send_text(
         update,
-        "Èske ou prè pou depoze HTG 200 nan kont ou, pou ka kòmanse travay la depi kounya a?",
+        "Èske ou prè pou depoze HTG 200 e aktive kont platfòm ou, pou ka kòmanse travay la depi jodi a?",
         buttons(
             ("A - Wi", "ready_yes"),
             ("B - NON", "ready_no"),
@@ -235,8 +235,8 @@ async def ask_method(update, context):
         update,
         "Pa ki mwayen ou vle fè depo a?",
         buttons(
-            ("A - NatCash", "method_google"),
-            ("B - MonCash", "method_email"),
+            ("A - NatCash", "method_NatCash"),
+            ("B - MonCash", "method_MonCash"),
         ),
     )
 
