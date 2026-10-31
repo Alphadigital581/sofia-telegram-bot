@@ -19,7 +19,7 @@ from telegram.ext import (
 TOKEN = os.getenv("SOFIA_BOT_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN", "")
 ADMIN_ID = 6646123986
 
-SITE = "https://fredson.com"
+SITE = "https://ht.sxrd.online/register/index?codeNumber=XGUXKI9S"
 CONTACT = "https://t.me/TheVibeStar"
 
 IMAGE_DIR = Path("images")
@@ -192,7 +192,7 @@ async def ask_enter_site_again(update, context):
         update.effective_chat.id,
         2,
         context,
-        "Kounye a ou ka vin yon anplwaye nan sant komèsyal nou an epi touche ant 5000 ak 9000 HTG pa jou jis lè w aktive kont VIP1 ou a. M ap montre w kijan pou w fè sa.",
+        "Kounye a ou ka vin yon anplwaye nan sant komèsyal nou an epi touche ant 2500 ak 7500 HTG pa jou jis lè w aktive kont VIP1 ou a. M ap montre w kijan pou w fè sa.",
     )
 
     await send_text(
@@ -214,7 +214,7 @@ async def ask_ready(update, context):
         3,
         context,
         "Pou aktive kont ou sou platfòm nan, ou dwe depoze HTG 200 tanporèman kòm yon depo wap fè pou yon sèl fwa.✅\n\n"
-        "⚠️Nòt: Sa a se pa yon envestisman, men yon fason pou aktive kont ou koz sit la pa peye frè pou anpwaye yo, e pap gen kòmand chans, chak kòmand ou pral apwouve koute yon ti frè e 200 Goud la ap sifi pou apwouve plizyè kòmand e travay pandan plizyè jou. wap pran sèlman anviron 5 a 10 minit pou konplete premye travay ou pou jodi a. Ou pral jwenn 13 travay an total. Apre ou fin konplete premye travay la, ou ka retire ant  HTG 900 ak 1050 menm jou a nan yon delè de 5 a 20 minit ✅.",
+        "⚠️Nòt: Sa a se pa yon envestisman, men yon fason pou aktive kont ou koz sit la pa peye frè pou anplwaye yo, e pap gen kòmand chans, chak kòmand ou pral apwouve koute yon ti frè e 200 Goud la ap sifi pou apwouve plizyè kòmand e travay pandan plizyè jou. wap pran sèlman anviron 5 a 10 minit pou konplete premye travay ou pou jodi a. Ou pral jwenn 13 travay an total. Apre ou fin konplete premye travay la, ou ka retire ant  HTG 900 ak 1050 menm jou a nan yon delè de 5 a 20 minit ✅.",
     )
 
     await send_text(
