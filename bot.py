@@ -1,10 +1,256 @@
+import os
+import logging
+from pathlib import Path
+
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.ext import (
+    Application,
+    CommandHandler,
+    CallbackQueryHandler,
+    MessageHandler,
+    ContextTypes,
+    filters,
+)
+
+# ==========================================
+# KONFIGIRASYON
+# ==========================================
+
+TOKEN = os.getenv("SOFIA_BOT_TOKEN", "")
+ADMIN_ID = 6646123986
+
+SITE = "https://fredson.com"
+CONTACT = "https://t.me/TheVibeStar"
+
+IMAGE_DIR = Path("images")
+
+IMAGES = {
+    1: "image1.png",
+    2: "image3.png",
+    3: "image2.png",
+    4: "image22.png",
+}
+
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+)
+
+logger = logging.getLogger(__name__)
+
+
+# ==========================================
+# BOUTON AK MESAJ
+# ==========================================
+
+def buttons(*items):
+    return InlineKeyboardMarkup([
+        [InlineKeyboardButton(label, callback_data=data)]
+        for label, data in items
+    ])
+
+
+def set_stage(context, user_id, stage):
+    context.user_data.setdefault(user_id, {})["stage"] = stage
+
+
+def get_data(context, user_id):
+    return context.user_data.setdefault(user_id, {})
+
+
+async def send_text(update, text, keyboard=None):
+    await update.effective_message.reply_text(
+        text,
+        reply_markup=keyboard,
+    )
+
+
+async def send_image(chat_id, number, context, caption=None):
+    path = IMAGE_DIR / IMAGES[number]
+
+    if not path.is_file():
+        await context.bot.send_message(
+            chat_id=chat_id,
+            text=f"⚠️ Imaj la pa jwenn: {path}",
+        )
+        return
+
+    with path.open("rb") as photo:
+        await context.bot.send_photo(
+            chat_id=chat_id,
+            photo=photo,
+            caption=caption,
+        )
+
+
+# ==========================================
+# KESYON YO
+# ==========================================
+
+async def ask_age(update, context):
+    uid = update.effective_user.id
+    set_stage(context, uid, "age")
+
+    await send_text(
+        update,
+        "Mwen kontan ou kontakte nou. Mwen se Sofia asistan. "
+        "Èske ou gen 18 an oswa plis?",
+        buttons(
+            ("A - Wi", "age_yes"),
+            ("B - NON", "age_no"),
+        ),
+    )
+
+
+async def ask_understanding(update, context):
+    uid = update.effective_user.id
+    set_stage(context, uid, "understanding")
+
+    await send_text(
+        update,
+        "😊 Nou se yon kominote, yon konpayi.\n\n"
+        "📱 Travay sa a se machann.\n\n"
+        "Èske ou konprann? 😊",
+        buttons(
+            ("A - Wi", "understand_yes"),
+            ("B - NON", "understand_no"),
+        ),
+    )
+
+
+async def ask_first_registration(update, context):
+    uid = update.effective_user.id
+    set_stage(context, uid, "first_photo")
+
+    await send_text(
+        update,
+        "Mèsi anpil pou enterè ou! Ann kòmanse swiv gid la, "
+        "antre sou sit la epi kreye kont ou an 👇\n\n"
+        f"{SITE}",
+    )
+
+    await send_image(update.effective_chat.id, 1, context)
+
+    await send_text(
+        update,
+        "Apre ou fin antre, voye m yon screenshot ekran "
+        "epi ekri m Chwazi Wi pou mwen ka ede ou ak pwochen etap la.\n\n"
+        "Èske ou enskri deja?",
+        buttons(
+            ("A - Wi", "first_yes"),
+            ("B - NON", "first_no"),
+        ),
+    )
+
+
+async def ask_second_site(update, context):
+    uid = update.effective_user.id
+    set_stage(context, uid, "second_site")
+
+    await send_text(
+        update,
+        "Felisitasyon! 🎉 Paske ou enskri deja.\n\n"
+        "Nou prèske rive! 🚀 Etap enpòtan: "
+        "Tout ekip nou an ak travay chak jou.\n\n"
+        "Mwen envite w rantre nan sit ofisyèl la "
+        "tan pasyèl konpayi nou an.\n\n"
+        f"Klike sou lyen an: 👉 {SITE}",
+    )
+
+    await send_text(
+        update,
+        "Si ou rantre nan sit la, voye yon screenshot kopi ekran "
+        "epi ekri Wi, m ap mennen ou.\n\n"
+        "Èske ou antre nan sit la?",
+        buttons(
+            ("A - Wi", "site_yes"),
+            ("B - NON", "site_no"),
+        ),
+    )
+
+
+async def ask_movie_explanation(update, context):
+    uid = update.effective_user.id
+    set_stage(context, uid, "movie")
+
+    await send_text(
+        update,
+        "Oke, kounye a m ap eksplike kijan li fonksyone etap pa etap.\n\n"
+        "Nou se yon ekip pou gade fim.\n\n"
+        "Si ou konprann, tanpri reponn:",
+        buttons(
+            ("A - Wi", "movie_yes"),
+            ("B - NON", "movie_no"),
+        ),
+    )
+
+
+async def ask_enter_site_again(update, context):
+    uid = update.effective_user.id
+    set_stage(context, uid, "enter_again")
+
+    await send_image(
+        update.effective_chat.id,
+        2,
+        context,
+        "Kounye a ou ka vini sou sit la alèz.",
+    )
+
+    await send_text(
+        update,
+        "Èske ou antre?",
+        buttons(
+            ("A - Wi", "enter_yes"),
+            ("B - NON", "enter_no"),
+        ),
+    )
+
+
+async def ask_ready(update, context):
+    uid = update.effective_user.id
+    set_stage(context, uid, "ready")
+
+    await send_image(
+        update.effective_chat.id,
+        3,
+        context,
+        "Ou aktive.\n\n"
+        "⚠️ Nòt: Sa a se yon bon sit, se mwen ki kreye li.",
+    )
+
+    await send_text(
+        update,
+        "Èske ou pare kounye a?",
+        buttons(
+            ("A - Wi", "ready_yes"),
+            ("B - NON", "ready_no"),
+        ),
+    )
+
+
+async def ask_method(update, context):
+    uid = update.effective_user.id
+    set_stage(context, uid, "method")
+
+    await send_text(
+        update,
+        "Pa ki mwayen ou vle enskri sou sit la?",
+        buttons(
+            ("A - Google", "method_google"),
+            ("B - Imèl", "method_email"),
+        ),
+    )
+
+
+async def ask_final_registration(update, context):
     uid = update.effective_user.id
     set_stage(context, uid, "final_photo")
 
     await send_text(
         update,
-        "Ou bezwen depoze 200 HTG nan kont sa a pou aktive li.❗️Tanpri chwazi \"Transfè\" olye de \"Depo\". ❗️Si transfè a reyisi, tanpri voye yon screenshots kopi ekran resi transfè a ban mwen épi Chwazi Wi ou NON.🧾💳 N ap verifye peman ou a⚡️ Yon fwa verifikasyon an fini map kontakte administratè a n ap fè w konnen imedyatman epi n ap ba w aksè ak travay la. 🚀.\n\n"
-        "Èske ou efektye transfè a ?",
+        "Ou bezwen enskri pa youn nan metòd yo. 🚀\n\n"
+        "Si ou enskri, voye m screenshot foto a.\n\n"
+        "Èske ou enskri?",
         buttons(
             ("A - WI, MWEN FÈ SA", "final_yes"),
             ("B - NON, MWEN POKO", "final_no"),
@@ -15,6 +261,7 @@
 # ==========================================
 # KÒMANSE BOT LA
 # ==========================================
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     uid = update.effective_user.id
 
@@ -26,7 +273,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await send_text(
         update,
-        " 👋 Bonjou 😊 Mwen se Sofia nan ekip Resous Imèn.N ap kolabore ak platfòm entènasyonal tankou SHEIN, Amazon ak PriceSmart pou rekrite moun ki ka ede jere kòmand sou entènèt.\n\n"
+        "👋 Bonjou 😊 Mwen se Sofia nan ekip Resous Imèn.\n\n"
         "Èske ou ka di m ki kote ou te wè anons rekritman nou an?",
         buttons(
             ("A - Facebook", "source"),
@@ -86,7 +333,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await send_image(target, 4, context)
 
             await query.edit_message_caption(
-                caption="✅ Screenshot AKSEPTE. Gad imaj sa pou wè e konprann kisa pou fè.",
+                caption="✅ Screenshot AKSEPTE. Katriyèm imaj la voye.",
             )
 
         elif action == "reject":
@@ -97,7 +344,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 chat_id=target,
                 text=(
                     "❌ Screenshot ou a pa bon. Tanpri eseye ankò.\n\n"
-                    "Voye yon nouvo screenshot bon"
+                    "Voye yon nouvo screenshot ki klè."
                 ),
             )
 
@@ -110,7 +357,8 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # --------------------------------------
     # ETAP 1: SOUS
     # --------------------------------------
-if data == "source":
+
+    if data == "source":
         if user.get("stage") != "source":
             return
         await ask_age(update, context)
@@ -155,7 +403,8 @@ if data == "source":
     # --------------------------------------
     # ETAP 4: PREMYE SCREENSHOT
     # --------------------------------------
-elif data == "first_yes":
+
+    elif data == "first_yes":
         if user.get("stage") != "first_photo":
             return
 
@@ -194,7 +443,7 @@ elif data == "first_yes":
 
         await send_text(
             update,
-            "Pa gen pwoblèm. gwoup la la sèlman pou jwenn e swiv enfòmasyon sou sit la. 😊",
+            "Pa gen pwoblèm. Sit la la sèlman pou jwenn enfòmasyon. 😊",
         )
 
     # --------------------------------------
@@ -246,7 +495,8 @@ elif data == "first_yes":
     # --------------------------------------
     # ETAP 8: PARE
     # --------------------------------------
-elif data == "ready_yes":
+
+    elif data == "ready_yes":
         if user.get("stage") != "ready":
             return
         await ask_method(update, context)
@@ -258,7 +508,7 @@ elif data == "ready_yes":
         set_stage(context, uid, "wait_ready")
         await send_text(
             update,
-            "Ou pa gen pwoblèm. Ou ka fè sa nenpòt lè ou vle. 😊\n"
+            "Ou pa gen pwoblèm. Ou ka fè sa nenpòt lè. 😊\n"
             "Lè ou pare, ekri m epi chwazi A. M ap gide w etap pa etap.\n\n"
             "Èske ou pare?",
             buttons(("A - Wi", "ready_later_yes")),
@@ -273,30 +523,31 @@ elif data == "ready_yes":
     # ETAP 9: GOOGLE OSWA IMÈL
     # --------------------------------------
 
-    elif data == "method_NatCash":
+    elif data == "method_google":
         if user.get("stage") != "method":
             return
 
         await send_text(
             update,
-            "Metòd NatCash:\n\n"
-            "NatCash\n"
-            "41809786\n"
-            "Wislande Brunele",
+            "Metòd Google:\n\n"
+            "non\n"
+            "Cassandra Lafortune\n"
+            "lundi\n"
+            "mardi",
         )
 
         await ask_final_registration(update, context)
 
-    elif data == "method_MonCash":
+    elif data == "method_email":
         if user.get("stage") != "method":
             return
 
         await send_text(
             update,
-            "Metòd MonCash:\n\n"
-            "MonCash\n"
-            "44282371\n"
-            "Cassandra Lafortune",
+            "Metòd Imèl:\n\n"
+            "Na\n"
+            "Wislande Brunele\n"
+            "casande",
         )
 
         await ask_final_registration(update, context)
@@ -304,7 +555,8 @@ elif data == "ready_yes":
     # --------------------------------------
     # ETAP 10: DÈNYE SCREENSHOT
     # --------------------------------------
-elif data == "final_no":
+
+    elif data == "final_no":
         if user.get("stage") != "final_photo":
             return
 
@@ -328,7 +580,7 @@ elif data == "final_no":
 
         await send_text(
             update,
-            "Mwen resevwa screenshot ou a. Tann, m ap fè verifikasyon an pou ou. ⏳",
+            "Mwen resevwa screenshot ou a. Tann, m ap verifye pou ou. ⏳",
         )
 
         try:
@@ -401,6 +653,7 @@ async def receive_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # ==========================================
 # RESEVWA MESAJ TÈKS KI PA BOUTON
 # ==========================================
+
 async def receive_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     uid = update.effective_user.id
     stage = get_data(context, uid).get("stage")
@@ -488,4 +741,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
