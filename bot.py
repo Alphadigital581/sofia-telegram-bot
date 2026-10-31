@@ -326,7 +326,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             await context.bot.send_message(
                 chat_id=target,
-                text="Ou konekte avèk siksè. ✅",
+                text="pèyman ou a valide avèk siksè. Tanpri swiv gid imaj la pou ka kòmanse travay jounen an. Lèw finn efektye tout kòmand jounen an ekrim poum ka gidew etap pa etap nan pwosesis retrè a. Byenveni pami nou🎉. ✅",
             )
 
             await send_image(target, 4, context)
