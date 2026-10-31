@@ -133,8 +133,8 @@ async def ask_first_registration(update, context):
 
     await send_text(
         update,
-        "Nouvo itilizatè yo resevwa yon rekonpans 138G lè yo fini enskripsyon an. ✔️
-Apre ou fin ranpli enskripsyon an, voye m yon screenshots ekran,"
+        "Nouvo itilizatè yo resevwa yon rekonpans 138G lè yo fini enskripsyon an. ✔️ "
+        "Apre ou fin ranpli enskripsyon an, voye m yon screenshot ekran, "
         "epi ekri m Chwazi Wi pou mwen ka ede ou ak pwochen etap la.\n\n"
         "Èske ou enskri deja?",
         buttons(
