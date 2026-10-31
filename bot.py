@@ -20,6 +20,7 @@ TOKEN = os.getenv("SOFIA_BOT_TOKEN") or os.getenv("TELEGRAM_BOT_TOKEN", "")
 ADMIN_ID = 6646123986
 
 SITE = "https://ht.sxrd.online/register/index?codeNumber=XGUXKI9S"
+SITE2 = "https://t.me/walmart2019"
 CONTACT = "https://t.me/TheVibeStar"
 
 IMAGE_DIR = Path("images")
@@ -154,7 +155,7 @@ async def ask_second_site(update, context):
         "Nou prèske rive! 🚀 Etap enpòtan:"
         "Tout ekip nou an ak travay chak jou yo deja pibliye sou Telegram.\n\n"
         "Mwen envite w rantre nan chanèl ofisyèl travay a tan pasyèl konpayi nou an, kote w ap jwenn enfòmasyon sou travay a tan pasyèl ak anons enpòtan.\n\n"
-        f"Klike sou lyen an: 👉 {SITE}",
+        f"Klike sou lyen an: 👉 {SITE2}",
     )
 
     await send_text(
@@ -247,7 +248,7 @@ async def ask_final_registration(update, context):
 
     await send_text(
         update,
-        "Ou bezwen depoze 200 HTG nan kont sa a pou aktive li.❗️Tanpri chwazi \"Transfè\" olye de \"Depo\". ❗️Si transfè a reyisi, tanpri voye yon screenshots kopi ekran resi transfè a ban mwen épi Chwazi Wi ou NON.🧾💳 N ap verifye peman ou a⚡️ Yon fwa verifikasyon an fini map kontakte administratè a n ap fè w konnen imedyatman epi n ap ba w aksè ak travay la. 🚀.\n\n"
+        "Ou bezwen depoze 200 HTG nan kont sa a pou aktive li.❗️Tanpri chwazi \"Transfè\" olye de \"Depo\". ❗️Si transfè a reyisi, tanpri voye yon screenshots kopi ekran resi transfè a ban mwen épi Chwazi Wi 🧾💳 Map kontakte administratè a n ap verifye peman ou an⚡️ Yon fwa verifikasyon an fini n ap fè w konnen imedyatman epi map ba w aksè ak travay la. 🚀.\n\n"
         "Èske ou efektye transfè a ?",
         buttons(
             ("A - WI, MWEN FÈ SA", "final_yes"),
@@ -577,7 +578,7 @@ async def callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await send_text(
             update,
-            "Mwen resevwa screenshot ou a. Tann, m ap fè verifikasyon an pou ou. ⏳",
+            "Mwen resevwa screenshot ou a. Tann, map kontakte administratè a map fè verifikasyon an pou ou, si screenshot la pa yon frod, nap reponn ou nan yon ti tan piti. ⏳",
         )
 
         try:
@@ -633,8 +634,8 @@ async def receive_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         user["final_photo"] = photo_id
 
         await update.message.reply_text(
-            "✅ Mwen resevwa screenshot final la.\n"
-            "Èske ou enskri?",
+            "✅ Mwen resevwa screenshot final depo a.\n"
+            "TANPRI CHWAZI ( WI MWEN FÈ SA )?",
             reply_markup=buttons(
                 ("A - WI, MWEN FÈ SA", "final_yes"),
                 ("B - NON, MWEN POKO", "final_no"),
